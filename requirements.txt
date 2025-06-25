@@ -1,0 +1,6 @@
+Flask
+googletrans
+httpx
+Flask
+googletrans
+httpx

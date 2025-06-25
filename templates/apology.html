@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>😢 Guilt-Tripping Apology Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 50%, #ff8e8e 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .main-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        label::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 2px;
+        }
+
+        select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            background-color: #fff;
+            color: #333;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 15px center;
+            background-repeat: no-repeat;
+            background-size: 20px;
+            padding-right: 50px;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+            transform: translateY(-2px);
+        }
+
+        select:hover {
+            border-color: #ff8e8e;
+        }
+
+        .generate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            color: white;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .generate-btn:hover::before {
+            left: 100%;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(135deg, #ee5a6f, #ff6b6b);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .result-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .result-section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .result-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 2px;
+        }
+
+        .apology-text {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apology-text::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 4rem;
+            color: rgba(255, 107, 107, 0.3);
+            font-family: serif;
+        }
+
+        .apology-text::after {
+            content: '"';
+            position: absolute;
+            bottom: -30px;
+            right: 15px;
+            font-size: 4rem;
+            color: rgba(255, 107, 107, 0.3);
+            font-family: serif;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .play-btn:hover {
+            background: linear-gradient(135deg, #00a085, #00b894);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.4);
+        }
+
+        .play-btn:active {
+            transform: translateY(0);
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-emoji:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-emoji:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-emoji:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-5deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .main-form {
+                padding: 25px;
+            }
+            
+            .result-section {
+                padding: 20px;
+            }
+            
+            .apology-text {
+                font-size: 1.1rem;
+                padding: 20px;
+            }
+            
+            .generate-btn {
+                font-size: 1.1rem;
+                padding: 15px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .main-form {
+                padding: 20px;
+            }
+            
+            label {
+                font-size: 1.1rem;
+            }
+            
+            select {
+                padding: 12px 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-emoji">😢</div>
+    <div class="floating-emoji">💔</div>
+    <div class="floating-emoji">🙏</div>
+
+    <div class="container">
+        <div class="header">
+            <h1>😢 Guilt-Tripping Apology Generator</h1>
+            <div class="status-badge">Template loaded ✅</div>
+        </div>
+
+        <form class="main-form" method="post">
+            <div class="form-section">
+                <label for="scenario">Choose a scenario:</label>
+                <select name="scenario" id="scenario">
+                    <option value="Work" {% if request.form.get('scenario') == 'Work' %}selected{% endif %}>Work</option>
+                    <option value="School" {% if request.form.get('scenario') == 'School' %}selected{% endif %}>School</option>
+                    <option value="Social" {% if request.form.get('scenario') == 'Social' %}selected{% endif %}>Social</option>
+                    <option value="Family" {% if request.form.get('scenario') == 'Family' %}selected{% endif %}>Family</option>
+                </select>
+            </div>
+
+            <div class="form-section">
+                <label for="tone">Pick a tone (optional):</label>
+                <select name="tone" id="tone">
+                    <option value="" {% if not request.form.get('tone') %}selected{% endif %}>Choose a tone...</option>
+                    <option value="Sincere" {% if request.form.get('tone') == 'Sincere' %}selected{% endif %}>Sincere</option>
+                    <option value="Emotional" {% if request.form.get('tone') == 'Emotional' %}selected{% endif %}>Emotional</option>
+                    <option value="Dramatic" {% if request.form.get('tone') == 'Dramatic' %}selected{% endif %}>Dramatic</option>
+                </select>
+            </div>
+
+            <button type="submit" class="generate-btn">Generate Apology</button>
+        </form>
+
+        {% if apology %}
+        <div class="result-section">
+            <h2>Your Apology:</h2>
+            <div class="apology-text" id="apologyText">{{ apology }}</div>
+            <button class="play-btn" onclick="speakApology()">
+                🔊 Play Apology
+            </button>
+        </div>
+
+        <script>
+            function speakApology() {
+                const text = document.getElementById('apologyText').innerText;
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                utterance.pitch = 0.8;
+                
+                function loadAndSpeak() {
+                    const voices = window.speechSynthesis.getVoices();
+                    const preferredVoice = voices.find(voice => 
+                        voice.lang === 'en-US' && voice.name.includes('Female')
+                    ) || voices.find(voice => voice.lang === 'en-US');
+                    
+                    if (preferredVoice) {
+                        utterance.voice = preferredVoice;
+                    }
+                    window.speechSynthesis.speak(utterance);
+                }
+
+                if (window.speechSynthesis.getVoices().length === 0) {
+                    window.speechSynthesis.onvoiceschanged = loadAndSpeak;
+                } else {
+                    loadAndSpeak();
+                }
+            }
+        </script>
+        {% endif %}
+
+        <div class="navigation">
+            <a href="{{ url_for('index') }}" class="nav-link">Back to Excuse Generator</a>
+        </div>
+    </div>
+</body>
+</html>
