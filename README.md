@@ -106,6 +106,6 @@ Contributions are welcome! Please follow these steps:
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## ✉️ Contact
-Harsh Dhane - [@yourtwitter](https://twitter.com/yourtwitter) - harshvardhandhane25@gmail.com
+Harsh Dhane - harshvardhandhane25@gmail.com
 
-Project Link: [https://github.com/your-username/intelligent-excuse-generator](https://github.com/your-username/intelligent-excuse-generator)
+Project Link: [https://github.com/your-username/intelligent-excuse-generator]([https://github.com/your-username/intelligent-excuse-generator](https://github.com/harshdhane25/AI-Project-Intelligent-Excuse-Generator.git))
