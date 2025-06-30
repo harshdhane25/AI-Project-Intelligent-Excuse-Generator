@@ -48,7 +48,7 @@ intelligent-excuse-generator/
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/intelligent-excuse-generator.git
+git clone [https://github.com/harshdhane25/intelligent-excuse-generator.git](https://github.com/harshdhane25/AI-Project-Intelligent-Excuse-Generator.git)
 cd intelligent-excuse-generator
 ```
 
