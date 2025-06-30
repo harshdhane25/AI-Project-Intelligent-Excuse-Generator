@@ -108,4 +108,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## ✉️ Contact
 Harsh Dhane - harshvardhandhane25@gmail.com
 
-Project Link: ([https://github.com/your-username/intelligent-excuse-generator](https://github.com/harshdhane25/AI-Project-Intelligent-Excuse-Generator.git))
+Project Link: ([https://github.com/harshdhane25/intelligent-excuse-generator](https://github.com/harshdhane25/AI-Project-Intelligent-Excuse-Generator.git))
